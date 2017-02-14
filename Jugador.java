@@ -10,7 +10,7 @@
             vida       : tipo entero   : consultable y modificable
             vivo       : tipo booleano : consultable y modificable
             puntuacion : tipo entero   : consultable y modificable
-            miBitMap   : tipo Bitmap   : consultable 
+            bitMap     : tipo BitMap   : consultable 
 
         DERIVADAS
             NINGUNA
@@ -35,7 +35,7 @@
 	        public int getVida() 
 	        public boolean getVivo() 
 	        public int getPuntuacion() 
-	        public BitMap getMyBitMap() 
+	        public BitMap getBitMap() 
 
         METODOS MODIFICADORES
             public void setPosicionY(int posicionY) 
@@ -45,7 +45,7 @@
 	        public void setVida(int vida) 
 	        public void setVivo(boolean vivo) 
 	        public void setPuntuacion(int puntuacion)
-	        public void setMyBitMap(BitMap myBitMap)
+	        public void setBitMap(BitMap myBitMap)
             
         METODOS HEREDADOS
             public String toString()
@@ -63,173 +63,189 @@
 
 public class Jugador
 {
-//------------------------------- PROPIEDADES -----------------------------------------------//
-    //BASICAS
-    private int posicionY;
-	private int posicionX;
-	private int direccionY;
-	private int direccionX;
-	private int vida;
-	private boolean vivo;
-	private int puntuacion;
-	private BitMap myBitMap;
+	//------------------------------- PROPIEDADES -----------------------------------------------//
+		//BASICAS
+		private int posicionY;
+		private int posicionX;
+		private int direccionY;
+		private int direccionX;
+		private int vida;
+		private boolean vivo;
+		private int puntuacion;
+		private BitMap bitMap;
 
-    //DERIVADAS
-        //NINGUNA
+		//DERIVADAS
+			//NINGUNA
 
-    //COMPARTIDAS
-        //NINGUNA
+		//COMPARTIDAS
+			//NINGUNA
 
-//------------------------------- FIN PROPIEDADES --------------------------------------------//
-	
-//------------------------------- CONSTRUCTORES ----------------------------------------------//
-//CONSTRUCTOR POR DEFECTO
-public Jugador()
-{
-	posicionY  = 1;
-	posicionX  = 1;
-	direccionY = 1;
-	direccionX = 1;
-	vida = 1;
-	vivo = true;
-	puntuacion = 1;
-}
-
-//CONSTRUCTOR SOBRECARGADO
-public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, BitMap miBitMap)
-{
-	this.posicionY  = posicionY;
-	this.posicionX  = posicionX;
-	this.direccionX = direccionY;
-	this.direccionY = direccionX;
-	this.vida = vida;
-	this.vivo = vivo;
-	this.puntuacion = puntuacion;
-	this.miBitMap = miBitMap;
-}
-
-//CONSTRUCTOR DE COPIA
-
-//------------------------------- FIN CONSTRUCTORES ------------------------------------------//
-
-//------------------------------- METODOS CONSULTORES ----------------------------------------//
-public int getPosicionY() 
-{
-	return posicionY;
-}
-
-public int getPosicionX() 
-{
-	return posicionX;
-}
-	
-public int getDireccionY() 
-{
-	return direccionY;
-}
-	
-public int getDireccionX() 
-{
-	return direccionX;
-}
-	
-public int getVida() 
-{
-	return vida;
-}
-	
-public boolean getVivo() 
-{
-	return vivo;
-}
-	
-public int getPuntuacion() 
-{
-	return puntuacion;
-}
-	
-public BitMap getMiBitMap() 
-{
-	return miBitMap;
-}
-//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
-
-//------------------------------- METODOS MODIFICADORES --------------------------------------//
-private void setPosicionY(int posicionY) 
-{
-	this.posicionY = posicionY;
-}
-
-private void setPosicionX(int posicionX) 
-{
-	this.posicionX = posicionX;
-}
-
-private void setDireccionX(int direccionX)
-{
-	this.direccionX = direccionX;
-}
-	
-private void setDireccionY(int direccionY) 
-{
-	this.direccionY = direccionY;
-}
-	
-public void setVida(int vida) 
-{
-	this.vida = vida;
-}
-	
-public void setVivo(boolean vivo) 
-{
-	this.vivo = vivo;
-}
-	
-public void setPuntuacion(int puntuacion)
-{
-	this.puntuacion = puntuacion;
-}
-	
-private void setMiBitMap(BitMap miBitMap)
-{
-	this.miBitMap = miBitMap;
-}
-//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
-
-//------------------------------- METODOS HEREDADOS ------------------------------------------// 
-//------------------------------- FIN METODOS HEREDADOS --------------------------------------// 
- 
-//------------------------------- METODOS AÑADIDOS -------------------------------------------// 
-public void moverArriba(int numeroPosiciones)
-{
-	if ( posicionY - numeroPosiciones > 0 )
+	//------------------------------- FIN PROPIEDADES --------------------------------------------//
+		
+	//------------------------------- CONSTRUCTORES ----------------------------------------------//
+	//CONSTRUCTOR POR DEFECTO
+	public Jugador()
 	{
-		setPosicionY(posicionY -= numeroPosiciones);
+		posicionY  = 1;
+		posicionX  = 1;
+		direccionY = 1;
+		direccionX = 1;
+		vida = 1;
+		vivo = true;
+		puntuacion = 1;
 	}
-}
-	
-public void moverAbajo(int numeroPosiciones) 
-{
-	if ( posicionY + numeroPosiciones < BitMaps.pantallaBitMap.getMAX_Y() - 2 )
+
+	//CONSTRUCTOR SOBRECARGADO
+	public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, BitMap bitMap)
 	{
-		setPosicionY(posicionY +=  numeroPosiciones);
-	}	
-}
-	
-	
-public void moverIzquierda(int numeroPosiciones)
-{
-	if ( posicionX - numeroPosiciones > 0 )
-	{
-		setPosicionX(posicionX -= numeroPosiciones);
+		this.posicionY  = posicionY;
+		this.posicionX  = posicionX;
+		this.direccionX = direccionY;
+		this.direccionY = direccionX;
+		this.vida = vida;
+		this.vivo = vivo;
+		this.puntuacion = puntuacion;
+		this.bitMap = bitMap;
 	}
-}
 	
-public void moverDerecha(int numeroPosiciones) 
-{
-	if ( posicionX + numeroPosiciones < BitMaps.pantallaBitMap.getMAX_X() - 2 )
+    public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, char bitMap[][])
 	{
-		setPosicionX(posicionX += numeroPosiciones);
+		this.posicionY  = posicionY;
+		this.posicionX  = posicionX;
+		this.direccionX = direccionY;
+		this.direccionY = direccionX;
+		this.vida = vida;
+		this.vivo = vivo;
+		this.puntuacion = puntuacion;
+		this.bitMap.setBitMap(bitMap);
 	}
+
+
+	//CONSTRUCTOR DE COPIA
+
+	//------------------------------- FIN CONSTRUCTORES ------------------------------------------//
+
+	//------------------------------- METODOS CONSULTORES ----------------------------------------//
+	public int getPosicionY() 
+	{
+		return posicionY;
+	}
+
+	public int getPosicionX() 
+	{
+		return posicionX;
+	}
+		
+	public int getDireccionY() 
+	{
+		return direccionY;
+	}
+		
+	public int getDireccionX() 
+	{
+		return direccionX;
+	}
+		
+	public int getVida() 
+	{
+		return vida;
+	}
+		
+	public boolean getVivo() 
+	{
+		return vivo;
+	}
+		
+	public int getPuntuacion() 
+	{
+		return puntuacion;
+	}
+		
+	public BitMap getBitMap() 
+	{
+		return bitMap;
+	}
+	//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
+
+	//------------------------------- METODOS MODIFICADORES --------------------------------------//
+	public void setPosicionY(int posicionY) 
+	{
+		this.posicionY = posicionY;
+	}
+
+	public void setPosicionX(int posicionX) 
+	{
+		this.posicionX = posicionX;
+	}
+
+	public void setDireccionX(int direccionX)
+	{
+		this.direccionX = direccionX;
+	}
+		
+	public void setDireccionY(int direccionY) 
+	{
+		this.direccionY = direccionY;
+	}
+		
+	public void setVida(int vida) 
+	{
+		this.vida = vida;
+	}
+		
+	public void setVivo(boolean vivo) 
+	{
+		this.vivo = vivo;
+	}
+		
+	public void setPuntuacion(int puntuacion)
+	{
+		this.puntuacion = puntuacion;
+	}
+		
+	public void setBitMap(BitMap bitMap)
+	{
+		this.bitMap = bitMap;
+	}
+	//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
+
+	//------------------------------- METODOS HEREDADOS ------------------------------------------// 
+	//------------------------------- FIN METODOS HEREDADOS --------------------------------------// 
+	 
+	//------------------------------- METODOS AÑADIDOS -------------------------------------------// 
+	/*
+	public void moverArriba(int numeroPosiciones)
+	{
+		if ( posicionY - numeroPosiciones > 0 )
+		{
+			setPosicionY(posicionY -= numeroPosiciones);
+		}
+	}
+		
+	public void moverAbajo(int numeroPosiciones) 
+	{
+		if ( posicionY + numeroPosiciones < BitMaps.pantallaBitMap.getMAX_Y() - 2 )
+		{
+			setPosicionY(posicionY +=  numeroPosiciones);
+		}	
+	}
+		
+		
+	public void moverIzquierda(int numeroPosiciones)
+	{
+		if ( posicionX - numeroPosiciones > 0 )
+		{
+			setPosicionX(posicionX -= numeroPosiciones);
+		}
+	}
+		
+	public void moverDerecha(int numeroPosiciones) 
+	{
+		if ( posicionX + numeroPosiciones < BitMaps.pantallaBitMap.getMAX_X() - 2 )
+		{
+			setPosicionX(posicionX += numeroPosiciones);
+		}
+	}
+	*/
+	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------// 
 }
-//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------// 
