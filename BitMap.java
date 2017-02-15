@@ -1,19 +1,18 @@
 /*
-    CLASE BitMap
+    CLASE Bitmap
     
     PROPIEDADES
         BASICAS
             alto         : tipo entero   : consultable
-            ancho         : tipo entero   : consultable
-        	
-            bitMap[][] : tipo caracter : consultable
+            ancho        : tipo entero   : consultable
+            array2D[][]   : tipo caracter : consultable
 
         DERIVADAS
             NINGUNA
 
         COMPARTIDAS
-            BITMAP_PANTALLA : tipo array[][]   : consultable 
-            BITMAP_JUGADOR  : tipo array[][]   : consultable
+            Bitmap_PANTALLA : tipo array[][]   : consultable 
+            Bitmap_JUGADOR  : tipo array[][]   : consultable
             
     RESTRICCIONES
         NINGUNA
@@ -22,12 +21,12 @@
         METODOS CONSULTORES
             public int getAlto() 	
 	        public int getAncho() 
-	        public char[][] getBitMap()
+	        public char[][] getArray2D()
 
         METODOS MODIFICADORES
             public void setAlto(int Alto) 
 	        public void setAncho(int Ancho) 
-	        public void setBitMap(char[][] bitMap) 
+	        public void setArray2D(char[][] array2D) 
 	                  
         METODOS HEREDADOS
             public String toString()
@@ -40,18 +39,18 @@
 	        
 */
 
-public class BitMap 
+public class Bitmap 
 {
 	//------------------------------- PROPIEDADES -----------------------------------------------//
 	    //BASICAS
 	        private int alto, ancho;
-		    char bitMap[][];
+		    char[][] array2D;
 
 	    //DERIVADAS
 	        //NINGUNA
 
 	    //COMPARTIDAS
-	        public static char BITMAP_JUGADOR[][] = 
+	        public static char[][] BITMAP_JUGADOR = 
 	        {
 				{' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' '},
 				{' ',' ',' ',' ','#','#','#',' ',' ',' ',' '},
@@ -63,32 +62,32 @@ public class BitMap
 		
 	//------------------------------- CONSTRUCTORES ----------------------------------------------//
 	//CONSTRUCTOR POR DEFECTO
-	public BitMap()
+	public Bitmap()
 	{
 		alto = 1;
 		ancho = 1;
-		bitMap = new char[alto][ancho];
+		array2D = new char[alto][ancho];
 	}
 	//CONSTRUCTOR SOBRECARGADO
-	public BitMap(int alto, int ancho, char [][] bitMap)
+	public Bitmap(int alto, int ancho, char [][] array2D)
 	{
 		this.alto     = alto;
 		this.ancho    = ancho;
-		this.bitMap   = bitMap;
+		this.array2D   = array2D;
 	}
 	//CONSTRUCTOR DE COPIA
-	public BitMap(BitMap bitMap)
+	public Bitmap(Bitmap bitmap)
 	{
-		this.alto     = bitMap.getAlto();
-		this.ancho    = bitMap.getAncho();
-		this.bitMap   = bitMap.getBitMap();
+		this.alto     = bitmap.getAlto();
+		this.ancho    = bitmap.getAncho();
+		this.array2D   = bitmap.getArray2D();
 	}
 	
-	public BitMap(int alto, int ancho )
+	public Bitmap(int alto, int ancho )
 	{
 		this.alto = alto;
 		this.ancho = ancho;
-		this.bitMap = new char[alto][ancho];
+		this.array2D = new char[alto][ancho];
 	}
 	
 	//------------------------------- FIN CONSTRUCTORES ------------------------------------------//
@@ -104,9 +103,9 @@ public class BitMap
 		return ancho;
 	}
 		
-	public char[][] getBitMap() 
+	public char[][] getArray2D() 
 	{
-		return bitMap;
+		return array2D;
 	}
 	//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
 
@@ -121,9 +120,9 @@ public class BitMap
 		this.ancho = ancho;
 	}
 		
-	public void setBitMap(char[][] bitMap) 
+	public void setArray2D(char[][] array2D) 
 	{
-		this.bitMap = bitMap;
+		this.array2D = array2D;
 	}
 
 	//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
@@ -134,24 +133,24 @@ public class BitMap
 	//------------------------------- METODOS AÑADIDOS -------------------------------------------// 
 	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------//
 
-	public void insertarBitMap(BitMap bitMap, int posicionY, int posicionX)
+	public void insertarBitmap(Bitmap bitmap, int posicionY, int posicionX)
 	{
-	    for (int y = 0; y < bitMap.getAlto(); y++) 
+	    for (int y = 0; y < bitmap.getAlto(); y++) 
 	    {
-	        for (int x = 0; x <  bitMap.getAncho(); x++)
+	        for (int x = 0; x <  bitmap.getAncho(); x++)
 	        {
-	            this.bitMap[y + posicionY][x + posicionX] += bitMap.bitMap[y][x];
+	            this.array2D[y + posicionY][x + posicionX] += bitmap.array2D[y][x];
 	        }
 	    }
 	}
-	    
-	public void pintarPantalla()
+	
+	public void pintarMiBitmap()
 	{
 	    for (int y = 0; y < getAlto(); y++) 
 	    {
 	        for (int x = 0; x <  getAncho(); x++)
 	        {
-	            System.out.print(bitMap[y][x]);
+	            System.out.print(array2D[y][x]);
 	        }
 	        System.out.println();
 	    }
@@ -159,29 +158,29 @@ public class BitMap
 	    
 	public void limpiarBitmap()
 	{
-	    for (int y = 0; y < getAlto(); y++)  
+	    for (int y = 0; y < this.getAlto(); y++)  
 	    {
-	        for (int x = 0; x <  getAncho(); x++)
+	        for (int x = 0; x <  this.getAncho(); x++)
 	        {
-	            bitMap[y][x] = 0;
+	            array2D[y][x] = 0;
 	        }
 	    }
 	}
 	
-	public void rellenarBitMap(char caracter)
+	public void rellenarBitmap(char caracter)
 	{
 		for (int y = 0; y < getAlto(); y++)  
 	    {
 	        for (int x = 0; x < getAncho(); x++)
 	        {
-	            bitMap[y][x] = caracter;
+	            array2D[y][x] = caracter;
 	        }
 	    }
 	}
 	    
 	public void refrescarPantalla()
 	{
-	    pintarPantalla();
+	    pintarMiBitmap();
 	    pausarEjecucion(25);
 	    limpiarConsola();
 	}

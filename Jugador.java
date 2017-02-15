@@ -27,7 +27,7 @@
         puntuacion debe ser mayor o igual que 0
 
     INTERFAZ
-        METODOS CONSULTORES
+        //METODOS CONSULTORES
 	        public int getPosicionY()
 	        public int getPosicionX() 
 	        public int getDireccionY() 
@@ -37,7 +37,7 @@
 	        public int getPuntuacion() 
 	        public BitMap getBitMap() 
 
-        METODOS MODIFICADORES
+        //METODOS MODIFICADORES
             public void setPosicionY(int posicionY) 
 	        public void setPosicionX(int posicionX) 
 	        public void setDireccionX(int direccionX)
@@ -47,14 +47,14 @@
 	        public void setPuntuacion(int puntuacion)
 	        public void setBitMap(BitMap myBitMap)
             
-        METODOS HEREDADOS
+        //METODOS HEREDADOS
             public String toString()
             public int hashCode()
             public Jugador clone()
             public boolean equals(Object object)
             public int compareTo(Jugador jugador)
         
-        METODOS AÑADIDOS
+        //METODOS AÑADIDOS
 	        public void moverArriba(int numeroPosiciones)
 	        public void moverAbajo(int numeroPosiciones) 
 	        public void moverIzquierda(int numeroPosiciones)
@@ -72,7 +72,7 @@ public class Jugador
 		private int vida;
 		private boolean vivo;
 		private int puntuacion;
-		private BitMap bitMap;
+		private Bitmap bitmap;
 
 		//DERIVADAS
 			//NINGUNA
@@ -96,7 +96,7 @@ public class Jugador
 	}
 
 	//CONSTRUCTOR SOBRECARGADO
-	public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, BitMap bitMap)
+	public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, Bitmap bitmap)
 	{
 		this.posicionY  = posicionY;
 		this.posicionX  = posicionX;
@@ -105,10 +105,10 @@ public class Jugador
 		this.vida = vida;
 		this.vivo = vivo;
 		this.puntuacion = puntuacion;
-		this.bitMap = bitMap;
+		this.bitmap = bitmap;
 	}
 	
-    public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, char bitMap[][])
+    public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, char bitmap[][])
 	{
 		this.posicionY  = posicionY;
 		this.posicionX  = posicionX;
@@ -117,7 +117,7 @@ public class Jugador
 		this.vida = vida;
 		this.vivo = vivo;
 		this.puntuacion = puntuacion;
-		this.bitMap.setBitMap(bitMap);
+		
 	}
 
 
@@ -161,9 +161,9 @@ public class Jugador
 		return puntuacion;
 	}
 		
-	public BitMap getBitMap() 
+	public Bitmap getBitmap() 
 	{
-		return bitMap;
+		return bitmap;
 	}
 	//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
 
@@ -203,9 +203,9 @@ public class Jugador
 		this.puntuacion = puntuacion;
 	}
 		
-	public void setBitMap(BitMap bitMap)
+	public void setBitMap(Bitmap bitmap)
 	{
-		this.bitMap = bitMap;
+		this.bitmap = bitmap;
 	}
 	//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
 

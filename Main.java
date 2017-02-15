@@ -1,3 +1,25 @@
+/*
+ * PROGRAMADOR 
+ *     Paulo
+ * 
+ * FUNCIONAMIENTO 
+ *  
+ * REQUISITOS
+ * 
+ * ANALISIS
+ * 
+ * ENTRADAS
+ * 
+ * SALIDAS
+ * 
+ * RESTRICCIONES
+ * 
+ * SUPOSICIONES 
+ * 
+ * PSUDOCODIGO GENERALIZADO
+ * 
+ * 
+ */ 
 
 
 public class Main
@@ -7,8 +29,12 @@ public class Main
 		final int ANCHO_PANTALLA = 64;
 		final int ALTO_PANTALLA = 32;
 		
-		BitMap pantalla = new BitMap(ALTO_PANTALLA , ANCHO_PANTALLA);
-		pantalla.rellenarBitMap('1');
+		Bitmap pantalla = new Bitmap(ALTO_PANTALLA , ANCHO_PANTALLA, new char[ALTO_PANTALLA][ANCHO_PANTALLA]);
+		Jugador jugador = new Jugador(1,1,1,1,1,true,1, new Bitmap(11, 5, Bitmap.BITMAP_JUGADOR));
+		
+		
+		
+		pantalla.insertarBitmap(new Bitmap(11, 5, Bitmap.BITMAP_JUGADOR));
 		pantalla.pintarPantalla();
 	}
 }
