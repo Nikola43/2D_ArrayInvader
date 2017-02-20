@@ -213,19 +213,20 @@ public class Jugador
 	//------------------------------- FIN METODOS HEREDADOS --------------------------------------// 
 	 
 	//------------------------------- METODOS AÑADIDOS -------------------------------------------// 
-	/*
 	public void moverArriba(int numeroPosiciones)
 	{
 		if ( posicionY - numeroPosiciones > 0 )
 		{
+			setBitMap(new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_ARRIBA));
 			setPosicionY(posicionY -= numeroPosiciones);
 		}
 	}
 		
 	public void moverAbajo(int numeroPosiciones) 
 	{
-		if ( posicionY + numeroPosiciones < BitMaps.pantallaBitMap.getMAX_Y() - 2 )
+		if ( posicionY + numeroPosiciones < Main.ALTO_PANTALLA - 2 )
 		{
+			setBitMap(new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_ABAJO));
 			setPosicionY(posicionY +=  numeroPosiciones);
 		}	
 	}
@@ -235,17 +236,18 @@ public class Jugador
 	{
 		if ( posicionX - numeroPosiciones > 0 )
 		{
+			setBitMap(new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_IZQUIERDA));
 			setPosicionX(posicionX -= numeroPosiciones);
 		}
 	}
 		
 	public void moverDerecha(int numeroPosiciones) 
 	{
-		if ( posicionX + numeroPosiciones < BitMaps.pantallaBitMap.getMAX_X() - 2 )
+		if ( posicionX + numeroPosiciones < Main.ANCHO_PANTALLA - 2 )
 		{
+			setBitMap(new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_DERECHA));
 			setPosicionX(posicionX += numeroPosiciones);
 		}
 	}
-	*/
 	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------// 
 }

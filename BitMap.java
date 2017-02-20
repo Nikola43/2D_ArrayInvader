@@ -43,6 +43,7 @@ public class Bitmap
 {
 	//------------------------------- PROPIEDADES -----------------------------------------------//
 	    //BASICAS
+	    
 	        private int alto, ancho;
 		    char[][] array2D;
 
@@ -50,14 +51,30 @@ public class Bitmap
 	        //NINGUNA
 
 	    //COMPARTIDAS
-	        public static char[][] BITMAP_JUGADOR = 
-	        {
-				{' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ','#','#','#',' ',' ',' ',' '},
-				{'#',' ',' ','#','#','#','#','#',' ',' ','#'},
-				{'#',' ','#','#','#','#','#','#','#',' ','#'},
-				{'#','#','#','#','#','#','#','#','#','#','#'}
-			};
+	    public static char[][] BITMAP_JUGADOR_ARRIBA = 
+	    {
+			{' ',' ',' '},
+			{' ','*',' '},
+			{'*','*','*'}
+		};
+		public static char[][] BITMAP_JUGADOR_ABAJO = 
+	    {
+			{'*','*','*'},
+			{' ','*',' '},
+			{' ',' ',' '}
+		};
+		public static char[][] BITMAP_JUGADOR_IZQUIERDA = 
+	    {
+			{' ','*',' '},
+			{'*','*',' '},
+			{' ','*',' '}
+		};
+		public static char[][] BITMAP_JUGADOR_DERECHA = 
+	    {
+			{' ','*',' '},
+			{' ','*','*'},
+			{' ','*',' '}
+		};
 	//------------------------------- FIN PROPIEDADES --------------------------------------------//
 		
 	//------------------------------- CONSTRUCTORES ----------------------------------------------//
@@ -181,7 +198,8 @@ public class Bitmap
 	public void refrescarPantalla()
 	{
 	    pintarMiBitmap();
-	    pausarEjecucion(25);
+	    pausarEjecucion(20);
+	    limpiarBitmap();
 	    limpiarConsola();
 	}
 	        
