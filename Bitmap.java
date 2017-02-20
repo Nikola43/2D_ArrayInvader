@@ -3,8 +3,8 @@
     
     PROPIEDADES
         BASICAS
-            alto         : tipo entero   : consultable
-            ancho        : tipo entero   : consultable
+            alto          : tipo entero   : consultable
+            ancho         : tipo entero   : consultable
             array2D[][]   : tipo caracter : consultable
 
         DERIVADAS
@@ -51,6 +51,7 @@ public class Bitmap
 	        //NINGUNA
 
 	    //COMPARTIDAS
+	    //--------------------- BITMAPS DEL JUGADOR ------------------//
 	    public static char[][] BITMAP_JUGADOR_ARRIBA = 
 	    {
 			{' ',' ',' '},
@@ -75,6 +76,24 @@ public class Bitmap
 			{' ','*','*'},
 			{' ','*',' '}
 		};
+		//------------------ FIN BITMAPS DEL JUGADOR -----------------//
+		
+		//BITMAP FRUTA
+		public static char[][] BITMAP_FRUTA = 
+	    {
+			{' ','*',' '},
+			{' ','*','*'},
+			{' ','*',' '}
+		};
+		
+		public static char[][] BITMAP_ASTEROIDE = 
+	    {
+			{'*',' ','*',' ','*',' '},
+			{' ','*','*','*','*','*'},
+			{'*','*','*','*','*',' '},
+			{' ','*',' ','*',' ','*'}
+		};
+		
 	//------------------------------- FIN PROPIEDADES --------------------------------------------//
 		
 	//------------------------------- CONSTRUCTORES ----------------------------------------------//
@@ -198,7 +217,7 @@ public class Bitmap
 	public void refrescarPantalla()
 	{
 	    pintarMiBitmap();
-	    pausarEjecucion(20);
+	    pausarEjecucion(50);
 	    limpiarBitmap();
 	    limpiarConsola();
 	}

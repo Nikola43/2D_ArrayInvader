@@ -5,8 +5,6 @@
         BASICAS
             posicionY  : tipo entero   : consultable
             posicionX  : tipo entero   : consultable
-            direccionY : tipo entero   : consultable
-            direccionX : tipo entero   : consultable
             vida       : tipo entero   : consultable y modificable
             vivo       : tipo booleano : consultable y modificable
             puntuacion : tipo entero   : consultable y modificable
@@ -21,8 +19,6 @@
     RESTRICCIONES
         posicionY  debe estar comprendida en un rango de entre 0 y 64
         posicionX  debe estar comprendida en un rango de entre 0 y 64
-        direccionY debe estar comprendida en un rango de entre 0 y 64
-        direccionX debe estar comprendida en un rango de entre 0 y 64
         vida       debe estar comprendida en un rango de entre 0 y 100
         puntuacion debe ser mayor o igual que 0
 
@@ -30,8 +26,6 @@
         //METODOS CONSULTORES
 	        public int getPosicionY()
 	        public int getPosicionX() 
-	        public int getDireccionY() 
-	        public int getDireccionX() 
 	        public int getVida() 
 	        public boolean getVivo() 
 	        public int getPuntuacion() 
@@ -40,8 +34,6 @@
         //METODOS MODIFICADORES
             public void setPosicionY(int posicionY) 
 	        public void setPosicionX(int posicionX) 
-	        public void setDireccionX(int direccionX)
-	        public void setDireccionY(int direccionY) 
 	        public void setVida(int vida) 
 	        public void setVivo(boolean vivo) 
 	        public void setPuntuacion(int puntuacion)
@@ -88,39 +80,21 @@ public class Jugador
 	{
 		posicionY  = 1;
 		posicionX  = 1;
-		direccionY = 1;
-		direccionX = 1;
 		vida = 1;
-		vivo = true;
 		puntuacion = 1;
+		vivo = true;
 	}
 
 	//CONSTRUCTOR SOBRECARGADO
-	public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, Bitmap bitmap)
+	public Jugador(int posicionY, int posicionX, int vida, int puntuacion, boolean vivo, Bitmap bitmap)
 	{
 		this.posicionY  = posicionY;
 		this.posicionX  = posicionX;
-		this.direccionX = direccionY;
-		this.direccionY = direccionX;
 		this.vida = vida;
 		this.vivo = vivo;
-		this.puntuacion = puntuacion;
 		this.bitmap = bitmap;
-	}
-	
-    public Jugador(int posicionY, int posicionX, int direccionX, int direccionY, int vida, boolean vivo, int puntuacion, char bitmap[][])
-	{
-		this.posicionY  = posicionY;
-		this.posicionX  = posicionX;
-		this.direccionX = direccionY;
-		this.direccionY = direccionX;
-		this.vida = vida;
-		this.vivo = vivo;
 		this.puntuacion = puntuacion;
-		
 	}
-
-
 	//CONSTRUCTOR DE COPIA
 
 	//------------------------------- FIN CONSTRUCTORES ------------------------------------------//
@@ -130,37 +104,22 @@ public class Jugador
 	{
 		return posicionY;
 	}
-
 	public int getPosicionX() 
 	{
 		return posicionX;
 	}
-		
-	public int getDireccionY() 
-	{
-		return direccionY;
-	}
-		
-	public int getDireccionX() 
-	{
-		return direccionX;
-	}
-		
 	public int getVida() 
 	{
 		return vida;
 	}
-		
 	public boolean getVivo() 
 	{
 		return vivo;
 	}
-		
 	public int getPuntuacion() 
 	{
 		return puntuacion;
-	}
-		
+	}	
 	public Bitmap getBitmap() 
 	{
 		return bitmap;
@@ -172,37 +131,22 @@ public class Jugador
 	{
 		this.posicionY = posicionY;
 	}
-
 	public void setPosicionX(int posicionX) 
 	{
 		this.posicionX = posicionX;
 	}
-
-	public void setDireccionX(int direccionX)
-	{
-		this.direccionX = direccionX;
-	}
-		
-	public void setDireccionY(int direccionY) 
-	{
-		this.direccionY = direccionY;
-	}
-		
 	public void setVida(int vida) 
 	{
 		this.vida = vida;
-	}
-		
+	}	
 	public void setVivo(boolean vivo) 
 	{
 		this.vivo = vivo;
 	}
-		
 	public void setPuntuacion(int puntuacion)
 	{
 		this.puntuacion = puntuacion;
-	}
-		
+	}	
 	public void setBitMap(Bitmap bitmap)
 	{
 		this.bitmap = bitmap;
@@ -248,6 +192,12 @@ public class Jugador
 			setBitMap(new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_DERECHA));
 			setPosicionX(posicionX += numeroPosiciones);
 		}
+	}
+	
+
+	public void detectarColision()
+	{
+		if (jugador.posicionX == )
 	}
 	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------// 
 }
