@@ -7,6 +7,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#undef LeerTeclasUsandoCPP_STOP
+#define LeerTeclasUsandoCPP_STOP 0L
+#undef LeerTeclasUsandoCPP_ARRIBA
+#define LeerTeclasUsandoCPP_ARRIBA 119L
+#undef LeerTeclasUsandoCPP_ABAJO
+#define LeerTeclasUsandoCPP_ABAJO 115L
+#undef LeerTeclasUsandoCPP_IZQUIERDA
+#define LeerTeclasUsandoCPP_IZQUIERDA 97L
+#undef LeerTeclasUsandoCPP_DERECHA
+#define LeerTeclasUsandoCPP_DERECHA 100L
+#undef LeerTeclasUsandoCPP_ESC
+#define LeerTeclasUsandoCPP_ESC 27L
 /*
  * Class:     LeerTeclasUsandoCPP
  * Method:    leerTecla
