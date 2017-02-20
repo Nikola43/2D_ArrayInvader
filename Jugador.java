@@ -195,9 +195,18 @@ public class Jugador
 	}
 	
 
-	public void detectarColision()
+	public boolean detectarColision(Object object)
 	{
-		if (jugador.posicionX == )
+		boolean hayColision = false;
+		if (object != null && object instanceof Fruta)
+		{
+			Fruta fruta = (Fruta) object;
+			if (this.getPosicionX() == fruta.getPosicionX() && this.getPosicionY() == fruta.getPosicionY())
+			{
+				hayColision = true;
+			}
+		}
+		return hayColision;
 	}
 	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------// 
 }
