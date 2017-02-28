@@ -166,8 +166,6 @@ public class Bitmap
 	//------------------------------- FIN METODOS HEREDADOS --------------------------------------// 
 	 
 	//------------------------------- METODOS AÑADIDOS -------------------------------------------// 
-	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------//
-
 	public void insertarBitmap(Bitmap bitmap, int posicionY, int posicionX)
 	{
 	    for (int y = 0; y < bitmap.getAlto(); y++) 
@@ -212,45 +210,5 @@ public class Bitmap
 	        }
 	    }
 	}
-	    
-	public void refrescarPantalla()
-	{
-	    pintarMiBitmap();
-	    pausarEjecucion(50);
-	    limpiarBitmap();
-	    limpiarConsola();
-	}
-	        
-	public void pausarEjecucion(int tiempo)
-	{
-	    try 
-	    {
-	        Thread.sleep(tiempo);               
-	    } 
-	    catch(InterruptedException e) 
-	    {
-	       Thread.currentThread().interrupt();
-	    }
-	}
-	    
-	public final void limpiarConsola()
-	{
-	    try
-	    {
-	        final String sistemaOperativoActual = System.getProperty("os.name");
-
-	        if (sistemaOperativoActual.contains("Windows"))
-	        {
-	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-	        }
-	        else
-	        {
-	            Runtime.getRuntime().exec("clear");
-	        }
-	    }
-	    catch (final Exception e)
-	    {
-	        System.out.println("Error: No se pudo limpiar la consola. "+e);
-	    }
-	}
+	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------//
 }

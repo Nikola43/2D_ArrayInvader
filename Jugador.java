@@ -193,17 +193,20 @@ public class Jugador
 			setPosicionX(posicionX += numeroPosiciones);
 		}
 	}
-	
 
-	public boolean detectarColision(Object object)
+	
+	public boolean detectarColision(Object... object)
 	{
 		boolean hayColision = false;
-		if (object != null && object instanceof Fruta)
+		for(int i=0; i < object.length; i++)
 		{
-			Fruta fruta = (Fruta) object;
-			if (this.getPosicionX() == fruta.getPosicionX() && this.getPosicionY() == fruta.getPosicionY())
+			if (object[i] != null && object[i] instanceof Fruta)
 			{
-				hayColision = true;
+				Fruta fruta = (Fruta) object[i];
+				if (fruta.getPosicionX() == this.getPosicionX() && fruta.getPosicionY() == this.getPosicionX())
+				{
+					hayColision = true;
+				}
 			}
 		}
 		return hayColision;
