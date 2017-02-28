@@ -92,7 +92,6 @@ public class Main
 
 			if (gameOver == true)
 			{
-				System.out.println("GAME OVER");
 				do
 				{
 					System.out.print("Desea jugar de nuevo(s/n)?: ");

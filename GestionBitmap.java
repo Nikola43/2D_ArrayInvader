@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class GestionBitmap
 {
 	public static void refrescarPantalla(int tasaRefresco)
@@ -37,5 +39,11 @@ public class GestionBitmap
 	    {
 	        System.out.println("Error: No se pudo limpiar la consola. "+e);
 	    }
+	}
+
+	public static  void pintarPantallaGameOver()
+	{
+
+
 	}
 }
