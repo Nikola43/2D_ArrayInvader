@@ -81,16 +81,19 @@ public class Bitmap
 		//BITMAP FRUTA
 		public static char[][] BITMAP_FRUTA = 
 	    {
-			{'*','*'},
-			{'*','*'}
+			{' ','*'},
+			{' ',' '}
+		};
+		public static char[][] BITMAP_FRUTA_NO_COMESTIBLE = 
+	    {
+			{' ',' '},
+			{' ',' '}
 		};
 		
 		public static char[][] BITMAP_ASTEROIDE = 
 	    {
-			{'*',' ','*',' ','*',' '},
-			{' ','*','*','*','*','*'},
-			{'*','*','*','*','*',' '},
-			{' ','*',' ','*',' ','*'}
+			{'*','*'},
+			{'*','*'}
 		};
 		
 	//------------------------------- FIN PROPIEDADES --------------------------------------------//

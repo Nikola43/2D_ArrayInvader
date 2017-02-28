@@ -26,7 +26,7 @@ import java.util.*;
 public class Main
 {
 	public static int ALTO_PANTALLA  = 32;
-	public static int ANCHO_PANTALLA = 64;
+	public static int ANCHO_PANTALLA = 40;
 	
 	public static void main(String[] Args)
 	{		
@@ -36,29 +36,56 @@ public class Main
 
 		Scanner scanner = new Scanner(System.in);
 		Bitmap pantalla = new Bitmap(ALTO_PANTALLA , ANCHO_PANTALLA, new char[ALTO_PANTALLA][ANCHO_PANTALLA]);
-		Jugador jugador = new Jugador(28,30,10,1,true, new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_ARRIBA));
+		Jugador jugador = new Jugador(28,18,10,0,true, new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_ARRIBA));
+
+
+		Asteroide asteroide1 = new Asteroide(10, 10, new Bitmap(2,2, Bitmap.BITMAP_ASTEROIDE), 1);
+		Asteroide asteroide2 = new Asteroide(10, 10, new Bitmap(2,2, Bitmap.BITMAP_ASTEROIDE), 1);
+		Asteroide asteroide3 = new Asteroide(10, 10, new Bitmap(2,2, Bitmap.BITMAP_ASTEROIDE), 1);
+		Asteroide asteroide4 = new Asteroide(10, 10, new Bitmap(2,2, Bitmap.BITMAP_ASTEROIDE), 1);
+
 		Fruta fruta1 = new Fruta(10, 10, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
-		Fruta fruta2 = new Fruta(10, 20, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
-		Fruta fruta3 = new Fruta(10, 30, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
-		Fruta fruta4 = new Fruta(20, 10, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
-		Fruta fruta5 = new Fruta(20, 20, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
-		Fruta fruta6 = new Fruta(20, 30, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
+		Fruta fruta2 = new Fruta(10, 10, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
+		Fruta fruta3 = new Fruta(10, 10, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
+		Fruta fruta4 = new Fruta(10, 10, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
+		Fruta fruta5 = new Fruta(10, 10, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
 
 		LeerTeclasUsandoCPP teclas = new LeerTeclasUsandoCPP();
 		Random rand = new Random();
-		int n = 5 + rand.nextInt((10 - 5) + 1);
 
 		do
 		{
 			do
 			{
-				System.out.print("\t Vida: "+jugador.getVida()+"\t"+"Posicion X: "+jugador.getPosicionX()+"\t"+"Posicion Y: "+jugador.getPosicionY()+"\n");
-		        pantalla.insertarBitmap(fruta1.getBitmap(), 8,  5 + rand.nextInt((10 - 5) + 1));
-		        pantalla.insertarBitmap(fruta2.getBitmap(), 16, 5 + rand.nextInt((10 - 5) + 1));
-		        pantalla.insertarBitmap(fruta3.getBitmap(), 24, 5 + rand.nextInt((10 - 5) + 1));
-		        pantalla.insertarBitmap(fruta4.getBitmap(), 8,  15 + rand.nextInt((20 - 15) + 1));
-		        pantalla.insertarBitmap(fruta5.getBitmap(), 16, 15 + rand.nextInt((20 - 15) + 1));
-		        pantalla.insertarBitmap(fruta6.getBitmap(), 24, 15 + rand.nextInt((20 - 15) + 1));
+				System.out.print("\t Vida: "+jugador.getVida()+"\t"+"Puntuacion: "+jugador.getPuntuacion()+"\t"+"Posicion X: "+jugador.getPosicionX()+"\t"+"Posicion Y: "+jugador.getPosicionY()+"\t"+"fruta X: "+fruta1.getPosicionX()+"\t"+"fruta Y: "+fruta1.getPosicionY()+"\n");		        
+
+		   		fruta1.setPosicionYX(8,  5 + rand.nextInt((10 - 5) + 1));
+		        asteroide1.setPosicionYX(16, 5 + rand.nextInt((10 - 5) + 1));
+
+		        fruta2.setPosicionYX(24, 5 + rand.nextInt((10 - 5) + 1));
+		        asteroide2.setPosicionYX(8,  15 + rand.nextInt((20 - 15) + 1));
+
+		        fruta3.setPosicionYX(16, 15 + rand.nextInt((20 - 15) + 1));
+		        asteroide3.setPosicionYX(24, 15 + rand.nextInt((20 - 15) + 1));
+
+		        fruta4.setPosicionYX(8, 25 + rand.nextInt((30 - 25) + 1));
+		        asteroide4.setPosicionYX(16, 25 + rand.nextInt((30 - 25) + 1));
+
+		        fruta5.setPosicionYX(24, 25 + rand.nextInt((30 - 25) + 1));
+
+		        pantalla.insertarBitmap(fruta1.getBitmap(), fruta1.getPosicionY(), fruta1.getPosicionX());
+		        pantalla.insertarBitmap(asteroide1.getBitmap(), asteroide1.getPosicionY(), asteroide1.getPosicionX());
+
+		        pantalla.insertarBitmap(fruta2.getBitmap(), fruta2.getPosicionY(), fruta2.getPosicionX());
+		        pantalla.insertarBitmap(asteroide2.getBitmap(), asteroide2.getPosicionY(), asteroide2.getPosicionX());
+
+		        pantalla.insertarBitmap(fruta3.getBitmap(), fruta3.getPosicionY(), fruta3.getPosicionX());
+		        pantalla.insertarBitmap(asteroide3.getBitmap(), asteroide3.getPosicionY(), asteroide3.getPosicionX());
+
+		        pantalla.insertarBitmap(fruta4.getBitmap(), fruta4.getPosicionY(), fruta4.getPosicionX());
+		        pantalla.insertarBitmap(asteroide4.getBitmap(), asteroide4.getPosicionY(), asteroide4.getPosicionX());
+		        pantalla.insertarBitmap(fruta5.getBitmap(), fruta5.getPosicionY(), fruta5.getPosicionX());
+
 
 		        pantalla.insertarBitmap(jugador.getBitmap(), jugador.getPosicionY(), jugador.getPosicionX());
 		        pantalla.pintarMiBitmap();
@@ -80,14 +107,25 @@ public class Main
 
 				teclaPulsada = LeerTeclasUsandoCPP.STOP;
 
-				if ( jugador.detectarColision(fruta1,fruta2,fruta3,fruta4,fruta5,fruta6) == true )
+				if ( jugador.detectarColision(fruta1,fruta2,fruta3,fruta4,fruta5) == true )
+				{
+					jugador.setPuntuacion(jugador.getPuntuacion() + 10 );
+				}
+				if ( jugador.detectarColision(asteroide1,asteroide2,asteroide3,asteroide4) == true )
 				{
 					jugador.setVida(jugador.getVida() - 1);
 				}
 				if ( jugador.getVida() <= 0)
 				{
+					System.out.println("HAS PERDIDO");
 					gameOver = true;
 				}
+				if ( jugador.getPuntuacion() == 50 )
+				{
+					gameOver = true;
+					System.out.println("HAS GANADO");
+				}
+
 			} while( gameOver == false );
 
 			if (gameOver == true)
@@ -102,8 +140,14 @@ public class Main
 				{
 					gameOver = false;
 					jugador.setPosicionY(28);
-					jugador.setPosicionX(30);
+					jugador.setPosicionX(18);
 					jugador.setVida(10);
+					jugador.setPuntuacion(0);
+					fruta1.setBitMap(new Bitmap(2, 2, Bitmap.BITMAP_FRUTA));
+					fruta2.setBitMap(new Bitmap(2, 2, Bitmap.BITMAP_FRUTA));
+					fruta3.setBitMap(new Bitmap(2, 2, Bitmap.BITMAP_FRUTA));
+					fruta4.setBitMap(new Bitmap(2, 2, Bitmap.BITMAP_FRUTA));
+					fruta5.setBitMap(new Bitmap(2, 2, Bitmap.BITMAP_FRUTA));
 				}
 			}
 		} while ( opcionJugador == 's' ) ;	

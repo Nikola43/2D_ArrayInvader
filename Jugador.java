@@ -17,9 +17,7 @@
             NINGUNA
 
     RESTRICCIONES
-        posicionY  debe estar comprendida en un rango de entre 0 y 64
-        posicionX  debe estar comprendida en un rango de entre 0 y 64
-        vida       debe estar comprendida en un rango de entre 0 y 100
+        vida       debe estar comprendida en un rango de entre 0 y 5
         puntuacion debe ser mayor o igual que 0
 
     INTERFAZ
@@ -194,18 +192,30 @@ public class Jugador
 		}
 	}
 
-	
 	public boolean detectarColision(Object... object)
 	{
 		boolean hayColision = false;
 		for(int i=0; i < object.length; i++)
 		{
-			if (object[i] != null && object[i] instanceof Fruta)
+			if (object[i] != null && object[i] instanceof Asteroide || object[i] instanceof Fruta)
 			{
-				Fruta fruta = (Fruta) object[i];
-				if (fruta.getPosicionX() == this.getPosicionX() && fruta.getPosicionY() == this.getPosicionX())
+				if ( object[i] instanceof Fruta )
 				{
-					hayColision = true;
+					Fruta fruta = (Fruta) object[i];
+					if (fruta.getPosicionX() + 1 == this.getPosicionX() && fruta.getPosicionY() == this.getPosicionY() + 1)
+					{
+						fruta.setBitMap(new Bitmap(2, 2, Bitmap.BITMAP_FRUTA_NO_COMESTIBLE));
+						hayColision = true;
+					}
+				}
+
+				if ( object[i] instanceof Asteroide )
+				{
+					Asteroide asteroide = (Asteroide) object[i];
+					if (asteroide.getPosicionX() + 1 == this.getPosicionX() && asteroide.getPosicionY() == this.getPosicionY() + 1 )
+					{
+						hayColision = true;
+					}
 				}
 			}
 		}

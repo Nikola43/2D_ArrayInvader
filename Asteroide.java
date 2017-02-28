@@ -1,5 +1,5 @@
 /*
-    CLASE Fruta
+    CLASE Asteroide
     
     PROPIEDADES
         BASICAS
@@ -31,20 +31,21 @@
         //METODOS HEREDADOS
             public String toString()
             public int hashCode()
-            public Fruta clone()
+            public Asteroide clone()
             public boolean equals(Object object)
-            public int compareTo(Fruta Fruta)
+            public int compareTo(Asteroide Asteroide)
         
         //METODOS AÑADIDOS
 */
 
-public class Fruta
+public class Asteroide
 {
 	//------------------------------- PROPIEDADES -----------------------------------------------//
 		//BASICAS
 		private int posicionY;
 		private int posicionX;
 		private Bitmap bitmap;
+		private int capacidadDestruccion;
 
 		//DERIVADAS
 			//NINGUNA
@@ -56,18 +57,20 @@ public class Fruta
 		
 	//------------------------------- CONSTRUCTORES ----------------------------------------------//
 	//CONSTRUCTOR POR DEFECTO
-	public Fruta()
+	public Asteroide()
 	{
 		posicionY  = 1;
 		posicionX  = 1;
+		capacidadDestruccion = 1;
 	}
 
 	//CONSTRUCTOR SOBRECARGADO
-	public Fruta(int posicionY, int posicionX, Bitmap bitmap)
+	public Asteroide(int posicionY, int posicionX, Bitmap bitmap, int capacidadDestruccion)
 	{
 		this.posicionY  = posicionY;
 		this.posicionX  = posicionX;
 		this.bitmap = bitmap;
+		this.capacidadDestruccion = capacidadDestruccion;
 	}
 	//CONSTRUCTOR DE COPIA
 
@@ -85,6 +88,10 @@ public class Fruta
 	public Bitmap getBitmap() 
 	{
 		return bitmap;
+	}
+	public int capacidadDestruccion() 
+	{
+		return capacidadDestruccion;
 	}
 	//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
 
@@ -105,6 +112,10 @@ public class Fruta
 	{
 		this.posicionY = posicionY;
 		this.posicionX = posicionX;
+	}
+	public void  setCapacidadDestruccion(int capacidadDestruccion)
+	{
+		this.capacidadDestruccion = capacidadDestruccion;
 	}
 	//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
 
