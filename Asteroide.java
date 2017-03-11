@@ -282,24 +282,18 @@ public class Asteroide implements Cloneable, Comparable<Asteroide>
 		}
 		else if (posicionY > asteroide.getPosicionY() && posicionX > asteroide.getPosicionX() ||
 				 posicionY > asteroide.getPosicionY() && posicionX == asteroide.getPosicionY()||
-				 posicionY == asteroide.getPosicionY() && posicionX > asteroide.getPosicionY())
+				 posicionY == asteroide.getPosicionY() && posicionX > asteroide.getPosicionY()||
+				 posicionY > asteroide.getPosicionY() && posicionX < asteroide.getPosicionY())
 		{
 			comparacion = 1;
 		}
 		else if (posicionY < asteroide.getPosicionY() && posicionX < asteroide.getPosicionX() ||
 				 posicionY < asteroide.getPosicionY() && posicionX == asteroide.getPosicionX()||
-				 posicionY == asteroide.getPosicionY() && posicionX < asteroide.getPosicionX())
+				 posicionY == asteroide.getPosicionY() && posicionX < asteroide.getPosicionX()||
+				 posicionY < asteroide.getPosicionY() && posicionX > asteroide.getPosicionX())
 		{
 			comparacion = -1;
 		}
-		else if (posicionY > asteroide.getPosicionY() && posicionX < asteroide.getPosicionY()  )
-	    {
-			comparacion = 1;
-	    }
-	    else if (posicionY < asteroide.getPosicionY() && posicionX > asteroide.getPosicionX()  )
-	    {
-			comparacion = -1;
-	    }
 		return comparacion;
 	}
 	//------------------------------- FIN METODOS HEREDADOS --------------------------------------//
@@ -309,6 +303,7 @@ public class Asteroide implements Cloneable, Comparable<Asteroide>
 		if (posicionY > 0 && posicionY < Bitmap.ALTO_MAXIMO &&
 			posicionX > 0 && posicionX < Bitmap.ANCHO_MAXIMO)
 		{
+			this.posicionY = posicionY;
 			this.posicionX = posicionX;
 		}
 		else
@@ -317,5 +312,7 @@ public class Asteroide implements Cloneable, Comparable<Asteroide>
 					                                     "posicionX debe estar entre 0 y el alto maximo del bitmap donde se desea posicionar");
 		}
 	}
+
+	public 
 	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------// 
 }

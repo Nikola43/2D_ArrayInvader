@@ -33,16 +33,59 @@ public class Main
 		boolean gameOver = false;
 		char opcionJugador = 'n';
 
-		Asteroide asteroide1 = new Asteroide();
-		Asteroide asteroide2 = new Asteroide();
-		Asteroide asteroide3 = new Asteroide();
-		Asteroide asteroide4 = new Asteroide();
+		//Declaramos los asteroides
+		Asteroide asteroide1, asteroide2, asteroide3, asteroide4, asteroide5;
 
+		//Declaramos las frutas
+		Fruta fruta1, fruta2, fruta3, fruta4, fruta5, 
+
+		//Declaramos scanner para leer por teclado las opciones del usuario
 		Scanner scanner = new Scanner(System.in);
+
+		//Declaramos un objeto teclas que usa metodos en c para leer las teclas mientras juega
+		LeerTeclasUsandoCPP teclas = new LeerTeclasUsandoCPP();
+
+		//Random para los movimientos de los objetos
+		Random rand = new Random();
+
+		//Declaramos una pantalla
 		Bitmap pantalla = new Bitmap(Bitmap.ALTO_MAXIMO, Bitmap.ANCHO_MAXIMO, new char[Bitmap.ALTO_MAXIMO][Bitmap.ANCHO_MAXIMO]);
+
+		//Declaramos un jugador
 		Jugador jugador = new Jugador(28,18,10,0,true, new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_ARRIBA));
 
+		do
+		{
+			System.out.print("Desea jugar a 2D_ArrayInvader(s/n): ");
+			opcionJugador = Character.toLowerCase(scanner.next().charAt(0));
+		} while ( opcionJugador != 's' && opcionJugador != 'n');
 
+		if ( opcionJugador == 's' )
+		{
+			switch (opcionJugador)
+			{
+				case '1': jugar(); break;
+				case '2': break;
+				case '3': break;
+				case '4': break;
+				case '5': break;
+				case '6': break;
+			}
+		}
+
+		if ( opcionJugador == 's' )
+		{
+			do
+			{
+				System.out.print("Desea jugar a 2D_ArrayInvader(s/n): ");
+				opcionJugador = Character.toLowerCase(scanner.next().charAt(0));
+			} while ( opcionJugador != 's' && opcionJugador != 'n');
+		}
+
+
+
+	public void jugar()
+	{
 		try
 		{
 			asteroide1 = new Asteroide(10, 10, 5, new Bitmap(2, 2, Bitmap.BITMAP_ASTEROIDE));
@@ -70,8 +113,7 @@ public class Main
 		Fruta fruta4 = new Fruta(10, 10, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
 		Fruta fruta5 = new Fruta(10, 10, new Bitmap(2,2, Bitmap.BITMAP_FRUTA));
 
-		LeerTeclasUsandoCPP teclas = new LeerTeclasUsandoCPP();
-		Random rand = new Random();
+
 
 		do
 		{
@@ -181,4 +223,8 @@ public class Main
 			}
 		} while ( opcionJugador == 's' ) ;	
 	}
+
+	}
+
 }
+

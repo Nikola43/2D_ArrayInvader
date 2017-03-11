@@ -4,21 +4,24 @@
     
     PROPIEDADES
         BASICAS
-            alto          : tipo entero   : consultable
-            ancho         : tipo entero   : consultable
-            array2D[][]   : tipo caracter : consultable
+            array2D[][]   : tipo caracter : consultable y modificable
 
         DERIVADAS
-            NINGUNA
+            alto          : tipo entero   : consultable calculada
+            ancho         : tipo entero   : consultable calculada
 
         COMPARTIDAS
-			BITMAP_JUGADOR_ARRIBA      : tipo array[][] : consultable
-			BITMAP_JUGADOR_ABAJO       : tipo array[][] : consultable
-			BITMAP_JUGADOR_IZQUIERDA   : tipo array[][] : consultable
-			BITMAP_JUGADOR_DERECHA     : tipo array[][] : consultable
-			BITMAP_FRUTA               : tipo array[][] : consultable
-			BITMAP_FRUTA_NO_COMESTIBLE : tipo array[][] : consultable
-			BITMAP_ASTEROIDE           : tipo array[][] : consultable
+            ALTO_MINIMO  = 2;
+			ANCHO_MINIMO = 2;
+		    ALTO_MAXIMO  = 32;
+		    ANCHO_MAXIMO = 64;
+			BITMAP_JUGADOR_ARRIBA      : tipo array[][] : constante consultable
+			BITMAP_JUGADOR_ABAJO       : tipo array[][] : constante consultable
+			BITMAP_JUGADOR_IZQUIERDA   : tipo array[][] : constante consultable
+			BITMAP_JUGADOR_DERECHA     : tipo array[][] : constante consultable
+			BITMAP_FRUTA               : tipo array[][] : constante consultable
+			BITMAP_FRUTA_NO_COMESTIBLE : tipo array[][] : constante consultable
+			BITMAP_ASTEROIDE           : tipo array[][] : constante consultable
 
     RESTRICCIONES
         NINGUNA
@@ -30,9 +33,9 @@
 	        public char[][] getArray2D()
 
         METODOS MODIFICADORES
-            public void setAlto(int Alto) 
-	        public void setAncho(int Ancho) 
-	        public void setArray2D(char[][] array2D) 
+            private void setAlto(int Alto) 
+	        private void setAncho(int Ancho) 
+	        public  void setArray2D(char[][] array2D) 
 	                  
         METODOS HEREDADOS
             public String toString()
@@ -42,6 +45,13 @@
             public int compareTo(Jugador jugador)
         
         METODOS AÑADIDOS
+        	public int devolverLongitudColumnaMasGrande(char[][] array)
+        	public void insertarBitmap(Bitmap bitmap, int posicionY, int posicionX)
+        	public void pintarMiBitmap()
+        	public void limpiarBitmap()
+        	public void rellenarBitmap(char caracter)
+
+
 	        
 */
 
@@ -49,19 +59,17 @@ public class Bitmap
 {
 	//------------------------------- PROPIEDADES -----------------------------------------------//
 	    //BASICAS
-	    
-	        private int alto, ancho;
-		    private char[][] array2D;
+		private char[][] array2D;
 
 	    //DERIVADAS
-	        //NINGUNA
+	    private int alto, ancho;
 
 	    //COMPARTIDAS
 		//Definimos las dimensiones minimas y maximas de un bitmap
 		public static final int ALTO_MINIMO  = 2;
 		public static final int ANCHO_MINIMO = 2;
 		public static final int ALTO_MAXIMO  = 32;
-		public static final int ANCHO_MAXIMO = 40;
+		public static final int ANCHO_MAXIMO = 64;
 
 	    //--------------------- BITMAPS DEL JUGADOR ------------------//
 	    public static final char[][] BITMAP_JUGADOR_ARRIBA = 
@@ -119,42 +127,44 @@ public class Bitmap
 		array2D = null;
 	}
 	//CONSTRUCTOR SOBRECARGADO
-	public Bitmap(int alto, int ancho, char [][] array2D)
+	public Bitmap(char [][] array2D)
 	{
-		if ( alto >= ALTO_MINIMO && alto <= ALTO_MAXIMO )
+		if ( array2D.length; >= ALTO_MINIMO && array2D.length; <= ALTO_MAXIMO )
 		{
-			this.alto = alto;
+			alto = array2D.length;
 		}
 		else
 		{
-
+			throw new BitmapDimensionNoValidaException("alto debe estar comprendido entre "+ALTO_MINIMO+" y "+ALTO_MAXIMO);
+		}
+		
+		if ( devolverLongitudColumnaMasGrande(array2D) >= ANCHO_MINIMO && devolverLongitudColumnaMasGrande(array2D) <= ANCHO_MAXIMO )
+		{
+			ancho = devolverLongitudColumnaMasGrande(array2D);
+		}	
+		else
+		{
+			throw new BitmapDimensionNoValidaException("ancho debe estar comprendido entre "+ANCHO_MINIMO+" y "+ANCHO_MAXIMO);
 		}
 
-		if ( ancho >= ANCHO_MINIMO && ancho <= ANCHO_MAXIMO )
+		if ( (array2D.length >= ALTO_MINIMO && array2D.length <= ALTO_MAXIMO) &&
+		     (devolverLongitudColumnaMasGrande() >= ANCHO_MINIMO && devolverLongitudColumnaMasGrande() <= ANCHO_MAXIMO) )
 		{
-			this.ancho    = ancho;
+			this.array2D   = array2D;	
 		}
 		else
 		{
-
+			throw new BitmapDimensionNoValidaException("alto y ancho deben ser acordes con la longitud del array bidimensional");
 		}
-		this.array2D   = array2D;
+		
 	}
 	//CONSTRUCTOR DE COPIA
 	public Bitmap(Bitmap bitmap)
 	{
-		this.alto     = bitmap.getAlto();
-		this.ancho    = bitmap.getAncho();
-		this.array2D   = bitmap.getArray2D();
+		this.alto    = bitmap.getAlto();
+		this.ancho   = bitmap.getAncho();
+		this.array2D = bitmap.getArray2D();
 	}
-	
-	public Bitmap(int alto, int ancho )
-	{
-		this.alto = alto;
-		this.ancho = ancho;
-		this.array2D = new char[alto][ancho];
-	}
-	
 	//------------------------------- FIN CONSTRUCTORES ------------------------------------------//
 
 	//------------------------------- METODOS CONSULTORES ----------------------------------------//
@@ -175,19 +185,40 @@ public class Bitmap
 	//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
 
 	//------------------------------- METODOS MODIFICADORES --------------------------------------//
-	public void setAlto(int alto) 
+	private void setAlto(int alto)
 	{
-		this.alto = alto;
+		if ( alto >= ALTO_MINIMO && alto <= ALTO_MAXIMO )
+		{
+			this.alto = alto;
+		}
+		else
+		{
+			throw new BitmapDimensionNoValidaException("alto debe estar comprendido entre "+ALTO_MINIMO+" y "+ALTO_MAXIMO);
+		}
+	}
+	private void setAncho(int ancho)
+	{
+		if ( devolverLongitudColumnaMasGrande(array2D) >= ANCHO_MINIMO && devolverLongitudColumnaMasGrande(array2D) <= ANCHO_MAXIMO )
+		{
+			this.ancho = ancho;
+		}
+		else
+		{
+			throw new BitmapDimensionNoValidaException("ancho debe estar comprendido entre "+ANCHO_MINIMO+" y "+ANCHO_MAXIMO);
+		}
 	}
 
-	public void setAncho(int ancho) 
-	{
-		this.ancho = ancho;
-	}
-		
 	public void setArray2D(char[][] array2D) 
 	{
-		this.array2D = array2D;
+		if ( (array2D.length >= ALTO_MINIMO && array2D.length <= ALTO_MAXIMO) &&
+		     (devolverLongitudColumnaMasGrande(array2D) >= ANCHO_MINIMO && devolverLongitudColumnaMasGrande(array2D) <= ANCHO_MAXIMO) )
+		{
+			this.array2D   = array2D;	
+		}
+		else
+		{
+			throw new BitmapDimensionNoValidaException("alto y ancho deben ser acordes con la longitud del array bidimensional");
+		}
 	}
 
 	//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
@@ -196,6 +227,33 @@ public class Bitmap
 	//------------------------------- FIN METODOS HEREDADOS --------------------------------------// 
 	 
 	//------------------------------- METODOS AÑADIDOS -------------------------------------------// 
+	public int devolverLongitudColumnaMasGrande(char[][] array)
+	{
+		int contadorColumnasValidas = 0;
+		int columnaMasGrande = 0;
+	
+		//Recorremos todas las columnas
+		for (int fila = 0; fila < array.length; fila++ )
+		{
+			for (int columna = 0; columna < array[fila].length; columna++ )
+			{
+				//Si la longitud de cada columna esta en el rango permitido
+				if (array[fila].length >= ANCHO_MINIMO && array[fila].length <= ANCHO_MAXIMO)
+				{
+					contadorColumnasValidas++;
+
+					//Si la columna actual es mayor que la columna mas grande del array
+					if (array[fila].length > columnaMasGrande )
+					{
+						//Asiganmos la longitud de esa columna como la columna mas grande del array
+						columnaMasGrande = array[fila].length;
+					}
+				}	
+			}
+		}
+		return columnaMasGrande;
+	}
+
 	public void insertarBitmap(Bitmap bitmap, int posicionY, int posicionX)
 	{
 	    for (int y = 0; y < bitmap.getAlto(); y++) 
@@ -211,7 +269,7 @@ public class Bitmap
 	{
 	    for (int y = 0; y < getAlto(); y++) 
 	    {
-	        for (int x = 0; x <  getAncho(); x++)
+	        for (int x = 0; x < getAncho(); x++)
 	        {
 	            System.out.print(array2D[y][x]);
 	        }
@@ -221,9 +279,9 @@ public class Bitmap
 	    
 	public void limpiarBitmap()
 	{
-	    for (int y = 0; y < this.getAlto(); y++)  
+	    for (int y = 0; y < getAlto(); y++)  
 	    {
-	        for (int x = 0; x <  this.getAncho(); x++)
+	        for (int x = 0; x < getAncho(); x++)
 	        {
 	            array2D[y][x] = 0;
 	        }

@@ -18,7 +18,7 @@
             NINGUNA
 
     RESTRICCIONES
-        vida       debe estar comprendida en un rango de entre 0 y 5
+        vida       debe estar comprendida en un rango de entre 0 y 10
         puntuacion debe ser mayor o igual que 0
 
     INTERFAZ
