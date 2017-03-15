@@ -1,4 +1,3 @@
-
 /*
     CLASE Bitmap
     
@@ -45,14 +44,11 @@
             public int compareTo(Jugador jugador)
         
         METODOS AÑADIDOS
-        	public int devolverLongitudColumnaMasGrande(char[][] array)
+        	public int devolverAncho(char[][] array)
         	public void insertarBitmap(Bitmap bitmap, int posicionY, int posicionX)
         	public void pintarMiBitmap()
         	public void limpiarBitmap()
-        	public void rellenarBitmap(char caracter)
-
-
-	        
+        	public void rellenarBitmap(char caracter) 
 */
 
 public class Bitmap 
@@ -62,7 +58,7 @@ public class Bitmap
 		private char[][] array2D;
 
 	    //DERIVADAS
-	    private int alto, ancho;
+			//alto, ancho
 
 	    //COMPARTIDAS
 		//Definimos las dimensiones minimas y maximas de un bitmap
@@ -122,39 +118,19 @@ public class Bitmap
 	//CONSTRUCTOR POR DEFECTO
 	public Bitmap()
 	{
-		alto = 0;
-		ancho = 0;
 		array2D = null;
 	}
 	//CONSTRUCTOR SOBRECARGADO
 	public Bitmap(char [][] array2D)
 	{
-		if ( array2D.length; >= ALTO_MINIMO && array2D.length; <= ALTO_MAXIMO )
-		{
-			alto = array2D.length;
-		}
-		else
-		{
-			throw new BitmapDimensionNoValidaException("alto debe estar comprendido entre "+ALTO_MINIMO+" y "+ALTO_MAXIMO);
-		}
-		
-		if ( devolverLongitudColumnaMasGrande(array2D) >= ANCHO_MINIMO && devolverLongitudColumnaMasGrande(array2D) <= ANCHO_MAXIMO )
-		{
-			ancho = devolverLongitudColumnaMasGrande(array2D);
-		}	
-		else
-		{
-			throw new BitmapDimensionNoValidaException("ancho debe estar comprendido entre "+ANCHO_MINIMO+" y "+ANCHO_MAXIMO);
-		}
-
-		if ( (array2D.length >= ALTO_MINIMO && array2D.length <= ALTO_MAXIMO) &&
-		     (devolverLongitudColumnaMasGrande() >= ANCHO_MINIMO && devolverLongitudColumnaMasGrande() <= ANCHO_MAXIMO) )
+		if ( (this.getAlto() >= ALTO_MINIMO && this.getAlto() <= ALTO_MAXIMO) &&
+		     (this.getAncho() >= ANCHO_MINIMO && this.getAncho() <= ANCHO_MAXIMO) )
 		{
 			this.array2D   = array2D;	
 		}
 		else
 		{
-			throw new BitmapDimensionNoValidaException("alto y ancho deben ser acordes con la longitud del array bidimensional");
+			throw new BitmapDimensionNoValidaException("alto debe estar comprendido entre "+ALTO_MINIMO+" y "+ALTO_MAXIMO + "\n"+"ancho debe estar comprendido entre "+ANCHO_MINIMO+" y "+ANCHO_MAXIMO);
 		}
 		
 	}
@@ -168,16 +144,37 @@ public class Bitmap
 	//------------------------------- FIN CONSTRUCTORES ------------------------------------------//
 
 	//------------------------------- METODOS CONSULTORES ----------------------------------------//
-	public int getAlto() 
+	public int getAncho()
 	{
-		return alto;
+		int contadorColumnasValidas = 0;
+		int columnaMasGrande = 0;
+	
+		//Recorremos todas las columnas
+		for (int fila = 0; fila < array2D.length; fila++ )
+		{
+			for (int columna = 0; columna < array2D[fila].length; columna++ )
+			{
+				//Si la longitud de cada columna esta en el rango permitido
+				if (array2D[fila].length >= ANCHO_MINIMO && array2D[fila].length <= ANCHO_MAXIMO)
+				{
+					contadorColumnasValidas++;
+
+					//Si la columna actual es mayor que la columna mas grande del array
+					if (array2D[fila].length > columnaMasGrande )
+					{
+						//Asiganmos la longitud de esa columna como la columna mas grande del array
+						columnaMasGrande = array2D[fila].length;
+					}
+				}	
+			}
+		}
+		return columnaMasGrande;
 	}
-		
-	public int getAncho() 
+
+	public int getAlto()
 	{
-		return ancho;
+		return array2D.length;
 	}
-		
 	public char[][] getArray2D() 
 	{
 		return array2D;
@@ -185,29 +182,6 @@ public class Bitmap
 	//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
 
 	//------------------------------- METODOS MODIFICADORES --------------------------------------//
-	private void setAlto(int alto)
-	{
-		if ( alto >= ALTO_MINIMO && alto <= ALTO_MAXIMO )
-		{
-			this.alto = alto;
-		}
-		else
-		{
-			throw new BitmapDimensionNoValidaException("alto debe estar comprendido entre "+ALTO_MINIMO+" y "+ALTO_MAXIMO);
-		}
-	}
-	private void setAncho(int ancho)
-	{
-		if ( devolverLongitudColumnaMasGrande(array2D) >= ANCHO_MINIMO && devolverLongitudColumnaMasGrande(array2D) <= ANCHO_MAXIMO )
-		{
-			this.ancho = ancho;
-		}
-		else
-		{
-			throw new BitmapDimensionNoValidaException("ancho debe estar comprendido entre "+ANCHO_MINIMO+" y "+ANCHO_MAXIMO);
-		}
-	}
-
 	public void setArray2D(char[][] array2D) 
 	{
 		if ( (array2D.length >= ALTO_MINIMO && array2D.length <= ALTO_MAXIMO) &&
@@ -220,39 +194,13 @@ public class Bitmap
 			throw new BitmapDimensionNoValidaException("alto y ancho deben ser acordes con la longitud del array bidimensional");
 		}
 	}
-
 	//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
 
 	//------------------------------- METODOS HEREDADOS ------------------------------------------// 
 	//------------------------------- FIN METODOS HEREDADOS --------------------------------------// 
 	 
 	//------------------------------- METODOS AÑADIDOS -------------------------------------------// 
-	public int devolverLongitudColumnaMasGrande(char[][] array)
-	{
-		int contadorColumnasValidas = 0;
-		int columnaMasGrande = 0;
-	
-		//Recorremos todas las columnas
-		for (int fila = 0; fila < array.length; fila++ )
-		{
-			for (int columna = 0; columna < array[fila].length; columna++ )
-			{
-				//Si la longitud de cada columna esta en el rango permitido
-				if (array[fila].length >= ANCHO_MINIMO && array[fila].length <= ANCHO_MAXIMO)
-				{
-					contadorColumnasValidas++;
 
-					//Si la columna actual es mayor que la columna mas grande del array
-					if (array[fila].length > columnaMasGrande )
-					{
-						//Asiganmos la longitud de esa columna como la columna mas grande del array
-						columnaMasGrande = array[fila].length;
-					}
-				}	
-			}
-		}
-		return columnaMasGrande;
-	}
 
 	public void insertarBitmap(Bitmap bitmap, int posicionY, int posicionX)
 	{

@@ -57,8 +57,8 @@ public class Fruta
 	//CONSTRUCTOR POR DEFECTO
 	public Fruta()
 	{
-		posicionY  = 1;
-		posicionX  = 1;
+		posicionY  = 0;
+		posicionX  = 0;
 	}
 
 	//CONSTRUCTOR SOBRECARGADO
@@ -69,7 +69,13 @@ public class Fruta
 		this.bitmap = bitmap;
 	}
 	//CONSTRUCTOR DE COPIA
-
+	//CONSTRUCTOR SOBRECARGADO
+	public Fruta(Fruta fruta)
+	{
+		posicionY  = fruta.getPosicionY();
+		posicionX  = fruta.getPosicionX();
+		bitmap     = fruta.getBitmap();
+	}
 	//------------------------------- FIN CONSTRUCTORES ------------------------------------------//
 
 	//------------------------------- METODOS CONSULTORES ----------------------------------------//
@@ -88,22 +94,17 @@ public class Fruta
 	//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
 
 	//------------------------------- METODOS MODIFICADORES --------------------------------------//
-	public void setPosicionY(int posicionY) 
+	private void setPosicionY(int posicionY) 
 	{
 		this.posicionY = posicionY;
 	}
-	public void setPosicionX(int posicionX) 
+	private void setPosicionX(int posicionX) 
 	{
 		this.posicionX = posicionX;
 	}
-	public void setBitMap(Bitmap bitmap)
+	private void setBitMap(Bitmap bitmap)
 	{
 		this.bitmap = bitmap;
-	}
-	public void setPosicionYX(int posicionY, int posicionX)
-	{
-		this.posicionY = posicionY;
-		this.posicionX = posicionX;
 	}
 	//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
 
@@ -111,5 +112,10 @@ public class Fruta
 	//------------------------------- FIN METODOS HEREDADOS --------------------------------------// 
 	 
 	//------------------------------- METODOS AÑADIDOS -------------------------------------------//
+	public void setPosicionYX(int posicionY, int posicionX)
+	{
+		this.posicionY = posicionY;
+		this.posicionX = posicionX;
+	}
 	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------// 
 }
