@@ -42,7 +42,12 @@ public class GestionBitmap
 
 	public static  void pintarPantallaGameOver()
 	{
-
-
+		System.out.println(" #####                          #######                      ");
+		System.out.println("#     #   ##   #    # ######    #     # #    # ###### #####  ");
+		System.out.println("#        #  #  ##  ## #         #     # #    # #      #    # ");
+		System.out.println("#  #### #    # # ## # #####     #     # #    # #####  #    # ");
+		System.out.println("#     # ###### #    # #         #     # #    # #      #####  ");
+		System.out.println("#     # #    # #    # #         #     #  #  #  #      #   #  ");
+		System.out.println(" #####  #    # #    # ######    #######   ##   ###### #    # ");
 	}
 }

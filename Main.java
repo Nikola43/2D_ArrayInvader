@@ -32,12 +32,15 @@ public class Main
 		int teclaPulsada = 0;
 		boolean gameOver = false;
 		char opcionJugador = 'n';
+		char opcionMenuPrincipal;
+
+		GestionMain gestionMain = new GestionMain();
 
 		//Declaramos los asteroides
 		Asteroide asteroide1, asteroide2, asteroide3, asteroide4, asteroide5;
 
 		//Declaramos las frutas
-		Fruta fruta1, fruta2, fruta3, fruta4, fruta5, 
+		Fruta fruta1, fruta2, fruta3, fruta4, fruta5;
 
 		//Declaramos scanner para leer por teclado las opciones del usuario
 		Scanner scanner = new Scanner(System.in);
@@ -54,6 +57,9 @@ public class Main
 		//Declaramos un jugador
 		Jugador jugador = new Jugador(28,18,10,0,true, new Bitmap(3, 3, Bitmap.BITMAP_JUGADOR_ARRIBA));
 
+		//Tiempo que dura una partida
+		long duracionPartida;
+
 		do
 		{
 			System.out.print("Desea jugar a 2D_ArrayInvader(s/n): ");
@@ -62,14 +68,18 @@ public class Main
 
 		if ( opcionJugador == 's' )
 		{
+			gestionMain.mostrarMenuPrincipal();
+			do
+			{
+				System.out.print("Que desea hacer?: ");
+				opcionMenuPrincipal = Character.toLowerCase(scanner.next().charAt(0));
+			} while ( opcionMenuPrincipal < '1' && opcionMenuPrincipal > '3');
+
 			switch (opcionJugador)
 			{
 				case '1': jugar(); break;
-				case '2': break;
-				case '3': break;
-				case '4': break;
-				case '5': break;
-				case '6': break;
+				case '2': gestionMain.verMejorJugador(); break;
+				case '3': gestionMain.verPeorJugador(); break;
 			}
 		}
 
@@ -82,10 +92,11 @@ public class Main
 			} while ( opcionJugador != 's' && opcionJugador != 'n');
 		}
 
+	}
 
-
-	public void jugar()
+	public static void jugar()
 	{
+		duracionPartida = System.currentTimeMillis();
 		try
 		{
 			asteroide1 = new Asteroide(10, 10, 5, new Bitmap(2, 2, Bitmap.BITMAP_ASTEROIDE));
@@ -161,6 +172,7 @@ public class Main
 		        pantalla.insertarBitmap(jugador.getBitmap(), jugador.getPosicionY(), jugador.getPosicionX());
 		        pantalla.pintarMiBitmap();
 		        pantalla.limpiarBitmap();
+
 		        GestionBitmap.refrescarPantalla(50);
 
 				if ( teclas.hayTeclaPulsada() == true )
@@ -223,8 +235,5 @@ public class Main
 			}
 		} while ( opcionJugador == 's' ) ;	
 	}
-
-	}
-
 }
 

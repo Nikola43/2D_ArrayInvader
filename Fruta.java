@@ -59,17 +59,34 @@ public class Fruta
 	{
 		posicionY  = 0;
 		posicionX  = 0;
+		bitmap = null;
 	}
 
 	//CONSTRUCTOR SOBRECARGADO
 	public Fruta(int posicionY, int posicionX, Bitmap bitmap)
 	{
-		this.posicionY  = posicionY;
-		this.posicionX  = posicionX;
-		this.bitmap = bitmap;
+		if ( posicionY >= 0 && posicionY < Bitmap.ALTO_MAXIMO &&
+			 posicionX >= 0 && posicionX < Bitmap.ANCHO_MAXIMO)
+		{
+			this.posicionY = posicionY;
+			this.posicionX  = posicionX;
+		}
+		else
+		{
+			throw new FrutaPosicionNoValidaException("posicionY debe estar entre 0 y el alto maximo del bitmap donde se desea posicionar");
+		}
+
+		if ( (bitmap.getAlto() >= ALTO_MINIMO && bitmap.getAlto() <= ALTO_MAXIMO) &&
+		     (bitmap.getAncho() >= ANCHO_MINIMO && bitmap.getAncho() <= ANCHO_MAXIMO) )
+		{
+			this.bitmap = bitmap;
+		}
+		else
+		{
+			throw new FrutaDimensionNoValidaException("alto debe estar comprendido entre "+ALTO_MINIMO+" y "+ALTO_MAXIMO + "\n"+"ancho debe estar comprendido entre "+ANCHO_MINIMO+" y "+ANCHO_MAXIMO);
+		}
 	}
 	//CONSTRUCTOR DE COPIA
-	//CONSTRUCTOR SOBRECARGADO
 	public Fruta(Fruta fruta)
 	{
 		posicionY  = fruta.getPosicionY();
@@ -94,17 +111,39 @@ public class Fruta
 	//------------------------------- FIN METODOS CONSULTORES ------------------------------------//
 
 	//------------------------------- METODOS MODIFICADORES --------------------------------------//
-	private void setPosicionY(int posicionY) 
+	public void setPosicionY(int posicionY) 
 	{
-		this.posicionY = posicionY;
+		if ( posicionY >= 0 && posicionY < Bitmap.ALTO_MAXIMO )
+		{
+			this.posicionY = posicionY;
+		}
+		else
+		{
+			throw new FrutaPosicionNoValidaException("posicionY debe estar entre 0 y el alto maximo del bitmap donde se desea posicionar");
+		}
 	}
-	private void setPosicionX(int posicionX) 
+	public void setPosicionX(int posicionX) 
 	{
-		this.posicionX = posicionX;
+		if (posicionX >= 0 && posicionX < Bitmap.ANCHO_MAXIMO)
+		{
+			this.posicionX = posicionX;
+		}
+		else
+		{
+			throw new FrutaPosicionNoValidaException("posicionX debe estar entre 0 y el alto maximo del bitmap donde se desea posicionar");
+		}	
 	}
 	private void setBitMap(Bitmap bitmap)
 	{
-		this.bitmap = bitmap;
+		if ( (bitmap.getAlto() >= ALTO_MINIMO && bitmap.getAlto() <= ALTO_MAXIMO) &&
+		     (bitmap.getAncho() >= ANCHO_MINIMO && bitmap.getAncho() <= ANCHO_MAXIMO) )
+		{
+			this.bitmap = bitmap;
+		}
+		else
+		{
+			throw new FrutaDimensionNoValidaException("alto debe estar comprendido entre "+ALTO_MINIMO+" y "+ALTO_MAXIMO + "\n"+"ancho debe estar comprendido entre "+ANCHO_MINIMO+" y "+ANCHO_MAXIMO);
+		}
 	}
 	//------------------------------- FIN METODOS MODIFICADORES ----------------------------------//   
 
@@ -114,8 +153,16 @@ public class Fruta
 	//------------------------------- METODOS AÑADIDOS -------------------------------------------//
 	public void setPosicionYX(int posicionY, int posicionX)
 	{
-		this.posicionY = posicionY;
-		this.posicionX = posicionX;
+		if ( posicionY >= 0 && posicionY < Bitmap.ALTO_MAXIMO &&
+		     posicionX >= 0 && posicionX < Bitmap.ANCHO_MAXIMO )
+		{
+			this.posicionY = posicionY;
+			this.posicionX = posicionX;
+		}
+		else
+		{
+			throw new FrutaPosicionNoValidaException("posicionY debe estar entre 0 y el alto maximo del bitmap donde se desea posicionar"+"\n"+"posicionY debe estar entre 0 y el alto maximo del bitmap donde se desea posicionar"));
+		}
 	}
 	//------------------------------- FIN METODOS AÑADIDOS ---------------------------------------// 
 }
